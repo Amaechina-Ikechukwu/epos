@@ -14,6 +14,7 @@ export async function GET(req: NextRequest) {
       "PAYMENTS_READ",
       "ORDERS_READ",
       "CUSTOMERS_READ",
+      "ORDERS_WRITE", // Add this scope to allow order creation
     ].join("+");
 
     const origin = req.headers.get("origin") || "http://localhost:3000";

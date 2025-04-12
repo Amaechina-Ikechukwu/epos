@@ -8,6 +8,8 @@ import "./globals.css";
  import { ThemeProvider } from "@mui/material/styles";
  import { Box, CssBaseline } from "@mui/material";
  import DrawerAppBar from "@/components/Drawer";
+import { SquareProvider } from "@/contexts/SquareContextProvider";
+import { UserProvider } from "@/contexts/UserContextProvider";
  const geistSans = Geist({
    variable: "--font-geist-sans",
    subsets: ["latin"],
@@ -42,9 +44,13 @@ import "./globals.css";
              <AlertProvider>
                {/* Provide alert context to the entire app */}
                <LoginProvider>
-                 <DrawerAppBar>
-                   <div className="p-[40px]">{children}</div>
-                 </DrawerAppBar>
+                 <UserProvider>
+                   <SquareProvider>
+                     <DrawerAppBar>
+                       <div className="p-[40px]">{children}</div>
+                     </DrawerAppBar>
+                   </SquareProvider>
+                 </UserProvider>
                </LoginProvider>
              </AlertProvider>
            </ThemeProvider>

@@ -14,6 +14,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Logo from "../constants/Logo";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation"; // Import the router
+import { useAlert } from "@/contexts/AlertContextProvider";
 
 interface Props {
   window?: () => Window;
@@ -25,7 +26,7 @@ const drawerWidth = 240;
 const navItems = [
   { label: "Home", path: "/" },
   { label: "Settings", path: "/settings" },
-  { label: "Contact", path: "/contact" },
+  { label: "Orders", path: "/orders" },
 ];
 
 export default function DrawerAppBar(props: Props) {
@@ -72,8 +73,10 @@ export default function DrawerAppBar(props: Props) {
                   transform: isActive ? "scale(1.1)" : "scale(1)",
                   "&:hover": {
                     transform: "scale(1.05)",
-                    boxShadow: `0 0 5px ${theme.palette.primary.main}`,
+                    // boxShadow: `0 0 5px ${theme.palette.primary.main}`,
                     color: "info.main",
+                    border: !isActive ? "1px solid" : "none",
+                    borderColor: theme.palette.primary.main,
                   },
                   transition: "all 0.3s ease",
                   display: "flex",
