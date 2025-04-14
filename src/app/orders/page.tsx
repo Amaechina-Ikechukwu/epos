@@ -2,17 +2,14 @@
 import { useState } from "react";
 
 import { Button } from "@mui/material";
-import CreateOrderModal from "@/components/Orders/CreateOrderModal";
+import CatalogManager from "@/components/Orders/CatalogueManager";
 
 export default function Page() {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <Button variant="contained" onClick={() => setOpen(true)}>
-        Create Order
-      </Button>
-      <CreateOrderModal open={open} onClose={() => setOpen(false)} />
+      <CatalogManager />
     </>
   );
 }

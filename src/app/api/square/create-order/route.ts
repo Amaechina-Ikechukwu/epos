@@ -34,15 +34,40 @@ export async function POST(req: NextRequest) {
     // Extracting line items from the request body
     const { line_items } = await req.json();
 
-    // Create the order
+    if (!line_items || line_items.length === 0) {
+      return NextResponse.json(
+        { error: "No line items provided" },
+        { status: 400 }
+      );
+    }
+
+    console.log("Line items:", line_items); // Check the structure
+
+    // Ensure that each line item has a BigInt for the amount
+    const formattedLineItems = line_items.map((item) => {
+      const basePriceAmount = item.basePriceMoney?.amount;
+
+      // Ensure amount is converted to BigInt
+      if (basePriceAmount) {
+        item.basePriceMoney.amount = BigInt(basePriceAmount);
+      } else {
+        // Handle cases where price might be missing
+        console.error(`Missing or invalid price for item ${item.name}`);
+        item.basePriceMoney.amount = BigInt(100); // Default to 1 USD (100 cents)
+      }
+
+      return item;
+    });
+
+    // Create the order with properly formatted line items
     const { order } = await client.orders.create({
       order: {
         locationId: location_id,
-        lineItems: line_items,
+        lineItems: formattedLineItems,
       },
     });
 
-    // Convert BigInt values to string
+    // Convert BigInt values to string for response (for JSON serialization)
     const orderJson = JSON.parse(
       JSON.stringify(order, (key, value) =>
         typeof value === "bigint" ? value.toString() : value

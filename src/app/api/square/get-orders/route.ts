@@ -29,6 +29,7 @@ export async function GET(req: NextRequest) {
         { status: 400 }
       );
     }
+    console.log(JSON.stringify(locationsResponse.locations), null, 2);
 
     // Assuming you want the first location's ID
     const location_id = locationsResponse.locations[0].id;
