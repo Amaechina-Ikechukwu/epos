@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     // Fetch the locations associated with the account
     const locationsResponse = await client.locations.list();
 
-    if (locationsResponse.locations?.length === 0) {
+    if (locationsResponse?.locations?.length === 0) {
       return NextResponse.json(
         { error: "No locations found" },
         { status: 400 }

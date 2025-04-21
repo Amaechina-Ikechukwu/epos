@@ -33,6 +33,7 @@ type CatalogItem = {
       itemVariationData: {
         priceMoney?: {
           amount: number;
+          currency: string;
         };
       };
     }[];
@@ -97,6 +98,7 @@ export function CreateOrderModal({
         const variationId = catalogItem?.itemData?.variations?.[0]?.id;
 
         // Get the price of the item (if available)
+        //@ts-ignore
         let price = catalogItem?.itemData?.variations?.[0]?.price_money?.amount;
 
         // If the price is missing or invalid, log the error and set a default price

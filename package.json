@@ -25,6 +25,7 @@
     "swr": "^2.3.3"
   },
   "devDependencies": {
+    "@netlify/next": "^1.4.9",
     "@tailwindcss/postcss": "^4",
     "@types/cookie": "^0.6.0",
     "@types/node": "^20",
