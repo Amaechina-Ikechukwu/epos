@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
       "ITEMS_WRITE",
     ].join("+");
 
-    const origin = req.headers.get("origin") || "https://epos-inky.vercel.app/";
+    const origin = req.headers.get("origin") || "https://epos-inky.vercel.app";
     const redirectUri = encodeURIComponent(`${origin}/api/square/callback`);
 
     const authUrl = `https://connect.squareup.com/oauth2/authorize?client_id=${client_id}&scope=${scopes}&session=false&redirect_uri=${redirectUri}`;
