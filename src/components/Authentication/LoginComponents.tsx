@@ -86,7 +86,7 @@ export default function LoginComponents({ user }: { user: User | null }) {
     >
       <Box sx={style}>
         <img
-          src="https://receiptbranch.com/assets/images/logos/logo_primary.png"
+          src="https://epos-ceh1njogp-amaechinaikechukwus-projects.vercel.app/_next/image?url=%2Flogo_primary.png&w=256&q=75"
           alt="Logo"
           style={{ width: 100, marginBottom: "20px" }}
         />
