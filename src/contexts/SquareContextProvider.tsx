@@ -63,7 +63,7 @@ export const SquareProvider = ({ children }: { children: React.ReactNode }) => {
       {children}
       <>
         <Dialog
-          open={!isConnected && isApproved}
+          open={!isConnected && isApproved && isConnected !== null}
           // onClose={handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"

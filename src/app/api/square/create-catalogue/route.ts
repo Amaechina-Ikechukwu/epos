@@ -43,14 +43,7 @@ export async function POST(req: NextRequest) {
         },
       },
     });
-    console.log(
-      JSON.stringify(
-        response.catalogObject,
-        (_key, value) => (typeof value === "bigint" ? value.toString() : value),
-        2
-      )
-    );
-
+  
     return NextResponse.json({
       success: true,
       result: response.catalogObject?.id,

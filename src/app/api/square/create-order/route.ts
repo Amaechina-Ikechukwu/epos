@@ -41,8 +41,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.log("Line items:", line_items); // Check the structure
-
     // Ensure that each line item has a BigInt for the amount
     const formattedLineItems = line_items.map((item) => {
       const basePriceAmount = item.basePriceMoney?.amount;

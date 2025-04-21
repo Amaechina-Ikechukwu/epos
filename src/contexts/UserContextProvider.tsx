@@ -1,4 +1,5 @@
 "use client";
+import { auth } from "@/firebase/config";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface OwenData {
@@ -45,17 +46,14 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch(
-          "https://receipt-branch-test-hkxeu.ondigitalocean.app/v2/user",
-          {
-            method: "GET",
-            headers: {
-              Accept: "*/*",
-              "notification-token": "jjjjjjjjj",
-              Authorization: "Bearer id Q7YmiqbzS3MeDTFncEqzdbb0riL2",
-            },
-          }
-        );
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/v2/user`, {
+          method: "GET",
+          headers: {
+            Accept: "*/*",
+            "notification-token": "jjjjjjjjj",
+            Authorization: `Bearer id ${auth?.currentUser?.uid}`,
+          },
+        });
 
         if (!res.ok) throw new Error("Failed to fetch user");
 

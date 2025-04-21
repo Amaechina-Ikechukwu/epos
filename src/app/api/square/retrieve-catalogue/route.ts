@@ -25,7 +25,7 @@ export async function GET(req: NextRequest) {
 
     // Convert BigInts to strings
     const serializedData = JSON.parse(JSON.stringify(response.data, replacer));
-    console.log(serializedData);
+
     return NextResponse.json({ items: serializedData });
   } catch (error) {
     console.error("Retrieve catalog error:", error);
