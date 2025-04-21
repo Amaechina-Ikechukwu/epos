@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Assuming you want the first location's ID
+    //@ts-ignore
     const location_id = locationsResponse?.locations[0].id || "";
 
     // Extracting line items from the request body
