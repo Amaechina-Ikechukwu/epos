@@ -13,6 +13,7 @@ export async function GET(req: NextRequest) {
 
     // // Decrypt the token to get the access token
     // const accessToken = decrypt(encryptedToken);
+    // new line
 
     // // Initialize the Square client
     // const client = new SquareClient({
