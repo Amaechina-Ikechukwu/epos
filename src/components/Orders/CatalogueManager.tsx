@@ -21,6 +21,9 @@ import { useAlert } from "@/contexts/AlertContextProvider";
 import { CreateCatalogModal } from "./CreateCatalogueModal";
 import { CreateOrderModal } from "./CreateOrderModal";
 import { auth } from "@/firebase/config";
+import { useSquare } from "@/contexts/SquareContextProvider";
+import { redirect } from "next/navigation";
+
 
 const currencies = ["USD", "EUR", "NGN", "GBP", "CAD"];
 
@@ -43,8 +46,12 @@ export default function CatalogManager() {
   const [catalog, setCatalog] = useState<any[] | undefined>(undefined);
   const [openOrderModal, setOpenOrderModal] = useState(false);
   const [openCatalogModal, setOpenCatalogModal] = useState(false);
-
+ const { isConnected, merchantName, checkConnection } = useSquare();
+ 
   const fetchCatalog = async () => {
+    if(!isConnected){
+      redirect('/settings')
+    }
     const res = await fetch("/api/square/retrieve-catalogue");
     if (res.ok) {
       const data = await res.json();
@@ -53,9 +60,12 @@ export default function CatalogManager() {
     }
   };
 
+
   useEffect(() => {
+
     fetchCatalog();
   }, []);
+ 
   if (!catalog) {
     return (
       <Box>
